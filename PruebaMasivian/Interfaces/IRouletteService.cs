@@ -10,7 +10,8 @@ namespace PruebaMasivian.Interfaces
     {
         public Roulette CreateRoullete();       
         public bool OpenRoulete(int id);
-        public string GetRoulette(string id);
+        public Roulette GetRoulette(int id);
         public IList<Roulette> GetListRouletteWithState();
+        public Roulette CloseRoulette(int id);
     }
 }

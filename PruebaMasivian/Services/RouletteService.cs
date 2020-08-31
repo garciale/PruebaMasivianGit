@@ -11,26 +11,30 @@ namespace PruebaMasivian.Services
     public class RouletteService : IRouletteService
     {
         private readonly IRepository<Roulette> _rouletteRepository;
-        public RouletteService(IRepository<Roulette> rouletteRepository)
+      
+        public RouletteService(IRepository<Roulette> rouletteRepository, IRepository<Bet> betRepository)
         {
-            _rouletteRepository = rouletteRepository;
+            _rouletteRepository = rouletteRepository;     
+        }
+        public Roulette CloseRoulette(int id)
+        {
+            Roulette roulette= _rouletteRepository.GetById(id);
+            roulette.IsOpen = false;
+            return _rouletteRepository.Update(roulette);
         }
         public Roulette CreateRoullete()
         {
             Roulette roulette = new Roulette();
             
             return _rouletteRepository.Add(roulette);
-        }
-        public IList<Roulette> GetListRouletteWithState()
+        }        public IList<Roulette> GetListRouletteWithState()
         {
              return _rouletteRepository.ListAll();
         }
-        public string GetRoulette(string id)
+        public Roulette GetRoulette(int id)
         {
-            var a=  _rouletteRepository.Add(new Roulette());
-            return "";
+            return _rouletteRepository.GetById(id);
         }
-
         public bool OpenRoulete(int id)
         {
             Roulette roulette = _rouletteRepository.GetById(id);

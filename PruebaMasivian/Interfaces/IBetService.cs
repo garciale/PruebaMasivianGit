@@ -10,5 +10,6 @@ namespace PruebaMasivian.Interfaces
     {
         public bool MakeBet(Bet bet);
         public IList<Bet> GetBetsByRouletteId(int idRoulette);
+
     }
 }

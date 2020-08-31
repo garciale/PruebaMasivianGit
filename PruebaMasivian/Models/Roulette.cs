@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace PruebaMasivian.Models
 {
-    public class Roulette :BaseEntity
+    public class Roulette : BaseEntity
     {
         public bool IsOpen { get; set; }
+       
+
     }
 }

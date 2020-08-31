@@ -16,9 +16,11 @@ namespace PruebaMasivian.Controllers
     public class RouletteController : ControllerBase
     {
         public readonly IRouletteService _rouletteService;
-        public  RouletteController(IRouletteService rouletteService)
+        public readonly IBetService _betService;
+        public  RouletteController(IRouletteService rouletteService, IBetService betService)
         {
             _rouletteService = rouletteService;
+            _betService = betService;
         }     
         [HttpPost("CreateRoulette")]
         public ActionResult CreateRoulette()
@@ -36,14 +38,13 @@ namespace PruebaMasivian.Controllers
             else
 
                 return Ok("No se pudo realizar la operacion");       
-        }
-        [HttpPost("BetRultte")]
-        public void BetRultte(int id)
+        }       
+        [HttpPost("CloseRoulette/{id}")]
+        public ActionResult CloseRoulette(int id)
         {
-        }
-        [HttpPost("CloseRoulette")]
-        public void CloseRoulette(int id)
-        {
+            _rouletteService.CloseRoulette(id);
+          
+            return Ok(_betService.GetBetsByRouletteId(id));
         }
         [HttpGet]
         public List<Roulette> GetListOfRoulettesWithState()
