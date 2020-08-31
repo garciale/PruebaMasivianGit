@@ -10,6 +10,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PruebaMasivian.Data;
+using PruebaMasivian.Interfaces;
+using PruebaMasivian.Models;
+using PruebaMasivian.Services;
+using StackExchange.Redis;
 
 namespace PruebaMasivian
 {
@@ -19,29 +24,25 @@ namespace PruebaMasivian
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        public IConfiguration Configuration { get; } 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            services.AddSingleton<IConnectionMultiplexer>(x => ConnectionMultiplexer.Connect(Configuration.GetSection("RedisHost").Value));
+            services.AddSingleton<IRepository<Roulette>, RouletteRepository>();
+            services.AddSingleton<IRouletteService, RouletteService>();
+            services.AddSingleton<IRepository<Bet>, BetRepository>();
+            services.AddSingleton<IBetService, BetService>();
+        }       
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
