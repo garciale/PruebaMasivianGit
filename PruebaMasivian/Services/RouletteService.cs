@@ -1,17 +1,11 @@
 ﻿using PruebaMasivian.Interfaces;
 using PruebaMasivian.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
-
 namespace PruebaMasivian.Services
 {
     public class RouletteService : IRouletteService
     {
-        private readonly IRepository<Roulette> _rouletteRepository;
-      
+        private readonly IRepository<Roulette> _rouletteRepository;      
         public RouletteService(IRepository<Roulette> rouletteRepository, IRepository<Bet> betRepository)
         {
             _rouletteRepository = rouletteRepository;     
@@ -27,7 +21,8 @@ namespace PruebaMasivian.Services
             Roulette roulette = new Roulette();
             
             return _rouletteRepository.Add(roulette);
-        }        public IList<Roulette> GetListRouletteWithState()
+        }       
+        public IList<Roulette> GetListRouletteWithState()
         {
              return _rouletteRepository.ListAll();
         }

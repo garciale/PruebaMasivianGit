@@ -1,5 +1,4 @@
 using System;
-
 namespace PruebaMasivian
 {
     public class WeatherForecast

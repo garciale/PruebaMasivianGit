@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PruebaMasivian.Interfaces;
 using PruebaMasivian.Models;
-using StackExchange.Redis;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace PruebaMasivian.Controllers
 {
     [Route("api/[controller]")]
@@ -46,7 +40,7 @@ namespace PruebaMasivian.Controllers
           
             return Ok(_betService.GetBetsByRouletteId(id));
         }
-        [HttpGet]
+        [HttpGet("GetListOfRoulettesWithState")]
         public List<Roulette> GetListOfRoulettesWithState()
         {
             return _rouletteService.GetListRouletteWithState().ToList();           

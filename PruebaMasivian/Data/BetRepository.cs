@@ -5,8 +5,6 @@ using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-
 namespace PruebaMasivian.Data
 {
     public class BetRepository : IRepository<Bet>
@@ -35,17 +33,14 @@ namespace PruebaMasivian.Data
 
             return entity;
         }
-
         public Bet Delete(Bet entity)
         {
             throw new NotImplementedException();
         }
-
         public Bet GetById(int id)
         {
             throw new NotImplementedException();
         }
-
         public IList<Bet> ListAll()
         {
             IDatabase db = _connectionMultiplexer.GetDatabase();
@@ -54,7 +49,6 @@ namespace PruebaMasivian.Data
 
             return listJson != null ? JsonConvert.DeserializeObject<IList<Bet>>(listJson) : null;
         }
-
         public Bet Update(Bet entity)
         {
             throw new NotImplementedException();

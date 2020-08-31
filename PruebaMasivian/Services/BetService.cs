@@ -3,8 +3,6 @@ using PruebaMasivian.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-
 namespace PruebaMasivian.Services
 {
     public class BetService : IBetService
